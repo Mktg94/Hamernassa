@@ -1,15 +1,194 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/section-header";
 import Badge from "@/components/shared/badge";
 import { pharmaceuticalProducts, medicalEquipmentProducts } from "@/data/products";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
-import { Package, Plus, Edit, Trash2, Search, X, CheckCircle, ArrowRight, Save } from "lucide-react";
+import { Package, Plus, Edit, Trash2, Search, X, CheckCircle, ArrowRight, Save, Lock, Eye, EyeOff, Upload, Image as ImageIcon, LogOut } from "lucide-react";
 import type { Product } from "@/types";
 
+const ADMIN_CREDENTIALS = {
+  email: "hamernassa@gmail.com",
+  password: "Admin@123",
+};
+
+function LoginScreen({ onLogin }: { onLogin: () => void }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+      onLogin();
+    } else {
+      setError("Invalid email or password");
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-brand-950 via-brand-900 to-brand-800 flex items-center justify-center p-4">
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8"
+      >
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-800 to-emerald-600 flex items-center justify-center mx-auto mb-4">
+            <Lock className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-slate-900">Admin Login</h2>
+          <p className="text-slate-600 mt-2">Enter your credentials to access the admin panel</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none"
+              placeholder="hamernassa@gmail.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 pr-12 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none"
+                placeholder="Enter password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+
+          {error && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-red-500 text-sm text-center"
+            >
+              {error}
+            </motion.p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full py-3 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+          >
+            Login
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
+
+function ImageUploader({
+  image,
+  onImageChange,
+}: {
+  image: string;
+  onImageChange: (image: string) => void;
+}) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleFile = useCallback((file: File) => {
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          onImageChange(e.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }, [onImageChange]);
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  }, [handleFile]);
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => setIsDragging(false);
+
+  return (
+    <div className="space-y-2">
+      <label className="block text-sm font-medium text-slate-700">Product Image</label>
+      {image ? (
+        <div className="relative group">
+          <div className="aspect-video w-full rounded-xl overflow-hidden bg-slate-100">
+            <img src={image} alt="Product" className="w-full h-full object-cover" />
+          </div>
+          <button
+            type="button"
+            onClick={() => onImageChange("")}
+            className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      ) : (
+        <div
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onClick={() => fileInputRef.current?.click()}
+          className={`aspect-video w-full rounded-xl border-2 border-dashed transition-all cursor-pointer flex flex-col items-center justify-center gap-3 ${
+            isDragging
+              ? "border-brand-500 bg-brand-50"
+              : "border-slate-300 hover:border-brand-400 hover:bg-slate-50"
+          }`}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) handleFile(file);
+            }}
+            className="hidden"
+          />
+          <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+            <Upload className="w-6 h-6 text-slate-400" />
+          </div>
+          <div className="text-center">
+            <p className="text-sm font-medium text-slate-700">
+              Drag and drop an image here
+            </p>
+            <p className="text-xs text-slate-500 mt-1">or click to browse</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AdminProductsPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [products, setProducts] = useState<Product[]>([
     ...pharmaceuticalProducts,
     ...medicalEquipmentProducts,
@@ -23,6 +202,7 @@ export default function AdminProductsPage() {
     category: "",
     subcategory: "",
     description: "",
+    image: "",
     type: "pharmaceutical" as "pharmaceutical" | "medical-equipment",
     featured: false,
     new: true,
@@ -47,6 +227,7 @@ export default function AdminProductsPage() {
       category: "",
       subcategory: "",
       description: "",
+      image: "",
       type: "pharmaceutical",
       featured: false,
       new: true,
@@ -78,6 +259,7 @@ export default function AdminProductsPage() {
       category: product.category,
       subcategory: product.subcategory || "",
       description: product.description,
+      image: product.image || "",
       type: product.type,
       featured: product.featured || false,
       new: product.new || false,
@@ -107,6 +289,10 @@ export default function AdminProductsPage() {
       showNotification("success", "Product deleted successfully!");
     }
   };
+
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={() => setIsAuthenticated(true)} />;
+  }
 
   return (
     <>
@@ -140,16 +326,25 @@ export default function AdminProductsPage() {
               <h1 className="text-3xl md:text-4xl font-bold mb-2">Product Management</h1>
               <p className="text-slate-300">Manage your pharmaceutical and medical equipment inventory</p>
             </div>
-            <button
-              onClick={() => {
-                resetForm();
-                setShowAddModal(true);
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-800 font-semibold rounded-xl hover:bg-slate-50 transition-all"
-            >
-              <Plus className="w-5 h-5" />
-              Add Product
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  resetForm();
+                  setShowAddModal(true);
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-800 font-semibold rounded-xl hover:bg-slate-50 transition-all"
+              >
+                <Plus className="w-5 h-5" />
+                Add Product
+              </button>
+              <button
+                onClick={() => setIsAuthenticated(false)}
+                className="inline-flex items-center gap-2 px-4 py-3 bg-white/10 text-white font-medium rounded-xl hover:bg-white/20 transition-all"
+              >
+                <LogOut className="w-5 h-5" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -226,9 +421,13 @@ export default function AdminProductsPage() {
                     <tr key={product.id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-50 to-emerald-50 flex items-center justify-center flex-shrink-0">
-                            <Package className="w-6 h-6 text-brand-400" />
-                          </div>
+                          {product.image ? (
+                            <img src={product.image} alt={product.name} className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                          ) : (
+                            <div className="w-12 h-12 rounded-xl bg-linear-to-br from-brand-50 to-emerald-50 flex items-center justify-center shrink-0">
+                              <Package className="w-6 h-6 text-brand-400" />
+                            </div>
+                          )}
                           <div>
                             <p className="font-semibold text-slate-900">{product.name}</p>
                             <p className="text-sm text-slate-500 line-clamp-1">{product.description}</p>
@@ -343,6 +542,9 @@ export default function AdminProductsPage() {
             </div>
 
             <div className="p-6 space-y-4">
+              {/* Image Uploader */}
+              <ImageUploader image={formData.image} onImageChange={(img) => setFormData({ ...formData, image: img })} />
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Product Name *</label>
                 <input
