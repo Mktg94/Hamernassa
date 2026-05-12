@@ -323,10 +323,14 @@ export default function PharmaceuticalsPage() {
                 className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all duration-300"
               >
                 {/* Image Placeholder */}
-                <div className="relative h-48 bg-linear-to-br from-brand-50 to-emerald-50 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-2xl bg-brand-100/50 flex items-center justify-center">
-                    <Package className="w-10 h-10 text-brand-400" />
-                  </div>
+                <div className="relative h-48 bg-linear-to-br from-brand-50 to-emerald-50 flex items-center justify-center overflow-hidden">
+                  {product.image ? (
+                    <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-20 h-20 rounded-2xl bg-brand-100/50 flex items-center justify-center">
+                      <Package className="w-10 h-10 text-brand-400" />
+                    </div>
+                  )}
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     {product.featured && <Badge variant="featured">Featured</Badge>}

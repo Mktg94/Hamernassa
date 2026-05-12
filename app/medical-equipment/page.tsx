@@ -217,10 +217,14 @@ export default function MedicalEquipmentPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={viewportOptions} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
               <motion.div key={product.id} variants={fadeInUp} className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all duration-300">
-                <div className="relative h-48 bg-linear-to-br from-emerald-50 to-brand-50 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-2xl bg-brand-100/50 flex items-center justify-center">
-                    <Package className="w-10 h-10 text-brand-400" />
-                  </div>
+                <div className="relative h-48 bg-linear-to-br from-emerald-50 to-brand-50 flex items-center justify-center overflow-hidden">
+                  {product.image ? (
+                    <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-20 h-20 rounded-2xl bg-brand-100/50 flex items-center justify-center">
+                      <Package className="w-10 h-10 text-brand-400" />
+                    </div>
+                  )}
                   <div className="absolute top-4 left-4 flex gap-2">
                     {product.featured && <Badge variant="featured">Featured</Badge>}
                     {product.new && <Badge variant="new">New</Badge>}
