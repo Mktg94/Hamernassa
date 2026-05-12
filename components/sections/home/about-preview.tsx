@@ -18,10 +18,10 @@ export default function AboutPreview() {
             className="relative"
           >
             {/* Main Visual */}
-            <div className="relative bg-gradient-to-br from-brand-100 to-emerald-50 rounded-3xl p-8 lg:p-12">
+            <div className="relative bg-linear-to-br from-brand-100 to-emerald-50 rounded-3xl p-8 lg:p-12">
               <div className="aspect-square bg-white rounded-2xl shadow-lg flex items-center justify-center">
                 <div className="text-center p-8">
-                  <div className="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-brand-800 to-emerald-600 flex items-center justify-center mb-6 shadow-lg">
+                  <div className="w-24 h-24 mx-auto rounded-2xl bg-linear-to-br from-brand-800 to-emerald-600 flex items-center justify-center mb-6 shadow-lg">
                     <span className="text-white font-bold text-4xl">H</span>
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">HPP</h3>
@@ -73,7 +73,7 @@ export default function AboutPreview() {
               <p className="text-lg text-slate-600 leading-relaxed">
                 Hamernassa Pharmaceuticals began its journey with three dedicated professionals
                 and a single product line. Today, the company continues expanding its healthcare
-                solutions portfolio with a vision to become one of East Africa's leading
+                solutions portfolio with a vision to become one of East Africa&apos;s leading
                 pharmaceutical and medical equipment suppliers.
               </p>
 

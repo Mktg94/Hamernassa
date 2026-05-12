@@ -40,15 +40,14 @@ export interface TeamMember {
 export interface QuoteRequest {
   id?: string;
   name: string;
+  company: string;
+  phone: string;
   email: string;
-  phone?: string;
-  company?: string;
-  productId: string;
-  productName: string;
+  productInterest: string;
   quantity?: string;
-  message: string;
+  message?: string;
   status?: "pending" | "reviewed" | "responded" | "closed";
-  createdAt?: string;
+  createdAt: string;
 }
 
 export interface ContactSubmission {

@@ -40,7 +40,7 @@ const divisions = [
 
 export default function Divisions() {
   return (
-    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-slate-50 to-white">
+    <section className="relative py-20 lg:py-28 bg-linear-to-b from-slate-50 to-white">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
@@ -71,10 +71,10 @@ export default function Divisions() {
               className="group relative bg-white rounded-2xl p-6 lg:p-8 border border-slate-100 hover:border-transparent shadow-soft transition-all duration-300 hover:shadow-soft-lg hover:-translate-y-1"
             >
               {/* Gradient Accent */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${division.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
+              <div className={`absolute inset-0 rounded-2xl bg-linear-to-br ${division.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
 
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${division.color} flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-md`}>
+              <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${division.color} flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-md`}>
                 {division.icon}
               </div>
 
@@ -96,7 +96,7 @@ export default function Divisions() {
               </Link>
 
               {/* Bottom Border Accent */}
-              <div className={`absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r ${division.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`} />
+              <div className={`absolute bottom-0 left-8 right-8 h-0.5 bg-linear-to-r ${division.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`} />
             </motion.div>
           ))}
         </motion.div>

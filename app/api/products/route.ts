@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { Product } from "@/types";
 
 // In-memory storage (in production, use a database)
+// eslint-disable-next-line prefer-const
 let products: Product[] = [];
 
 export async function GET() {

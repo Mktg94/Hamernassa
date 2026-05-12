@@ -27,10 +27,10 @@ export default function TrustMetrics() {
             <motion.div
               key={index}
               variants={fadeInUp}
-              className="group relative bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 lg:p-8 border border-slate-100 hover:border-emerald-200 transition-all duration-300 hover:shadow-xl"
+              className="group relative bg-linear-to-br from-slate-50 to-white rounded-2xl p-6 lg:p-8 border border-slate-100 hover:border-emerald-200 transition-all duration-300 hover:shadow-xl"
             >
               {/* Top Accent Line */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-700 to-emerald-500 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-brand-700 to-emerald-500 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
               {/* Icon */}
               <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">

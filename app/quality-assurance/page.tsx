@@ -61,7 +61,7 @@ export default function QualityAssurancePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800">
+      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`,
           backgroundSize: '40px 40px'
@@ -119,7 +119,7 @@ export default function QualityAssurancePage() {
                 variants={fadeInUp}
                 className="group relative bg-white rounded-2xl p-6 border border-slate-100 hover:border-emerald-200 hover:shadow-xl transition-all duration-300"
               >
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${standard.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-md`}>
+                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${standard.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-md`}>
                   <standard.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3">{standard.title}</h3>
@@ -145,7 +145,7 @@ export default function QualityAssurancePage() {
               <AnimatedSection key={index} delay={index * 0.1}>
                 <div className="bg-white rounded-2xl p-8 border border-slate-100 hover:shadow-xl transition-shadow h-full">
                   <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
                       <process.icon className="w-6 h-6 text-brand-700" />
                     </div>
                     <div>
@@ -189,7 +189,7 @@ export default function QualityAssurancePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-brand-800 to-brand-700">
+      <section className="py-20 bg-linear-to-r from-brand-800 to-brand-700">
         <div className="max-w-4xl mx-auto px-4 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Have Questions About Our Quality Standards?</h2>
           <p className="text-lg text-slate-200 mb-8">Our quality team is ready to address any concerns and provide detailed documentation.</p>

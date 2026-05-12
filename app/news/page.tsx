@@ -23,7 +23,7 @@ export default function NewsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800">
+      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
         <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`, backgroundSize: '40px 40px' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -69,7 +69,7 @@ export default function NewsPage() {
             <motion.div initial="hidden" whileInView="visible" viewport={viewportOptions} variants={fadeInUp} className="mb-12">
               <Link href={`/news/${filteredNews[0].id}`} className="group block bg-white rounded-3xl overflow-hidden border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all">
                 <div className="grid md:grid-cols-2">
-                  <div className="h-64 md:h-auto bg-gradient-to-br from-brand-100 to-emerald-50 flex items-center justify-center">
+                  <div className="h-64 md:h-auto bg-linear-to-br from-brand-100 to-emerald-50 flex items-center justify-center">
                     <div className="w-24 h-24 rounded-2xl bg-brand-200/50 flex items-center justify-center">
                       <span className="text-4xl">📰</span>
                     </div>
@@ -96,7 +96,7 @@ export default function NewsPage() {
             {filteredNews.slice(1).map((article) => (
               <motion.article key={article.id} variants={fadeInUp}>
                 <Link href={`/news/${article.id}`} className="group block bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-emerald-200 hover:shadow-xl transition-all h-full">
-                  <div className="relative h-48 bg-gradient-to-br from-brand-50 to-emerald-50 flex items-center justify-center">
+                  <div className="relative h-48 bg-linear-to-br from-brand-50 to-emerald-50 flex items-center justify-center">
                     <div className="w-16 h-16 rounded-2xl bg-brand-200/50 flex items-center justify-center">
                       <span className="text-2xl">📰</span>
                     </div>

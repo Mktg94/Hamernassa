@@ -9,7 +9,7 @@ export default function CTASection() {
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-900" />
+      <div className="absolute inset-0 bg-linear-to-br from-brand-900 via-brand-800 to-brand-900" />
 
       {/* Decorative Elements */}
       <div className="absolute inset-0">
@@ -48,8 +48,8 @@ export default function CTASection() {
             variants={fadeInUp}
             className="text-lg text-slate-300 max-w-2xl mx-auto mb-10"
           >
-            Whether you're a hospital, clinic, pharmacy, or healthcare organization,
-            we're here to support your mission with quality products and reliable service.
+            Whether you&apos;re a hospital, clinic, pharmacy, or healthcare organization,
+            we&apos;re here to support your mission with quality products and reliable service.
           </motion.p>
 
           {/* CTA Buttons */}

@@ -31,7 +31,7 @@ export default function PartnersPreview() {
             <motion.div
               key={partner.id}
               variants={fadeInUp}
-              className="group relative bg-gradient-to-br from-slate-50 to-white rounded-xl p-6 border border-slate-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300"
+              className="group relative bg-linear-to-br from-slate-50 to-white rounded-xl p-6 border border-slate-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300"
             >
               {/* Logo Placeholder */}
               <div className="h-16 flex items-center justify-center">
@@ -46,7 +46,7 @@ export default function PartnersPreview() {
               </div>
 
               {/* Hover Effect */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 rounded-xl bg-linear-to-br from-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}
         </motion.div>

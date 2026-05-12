@@ -70,7 +70,7 @@ function QuoteModal({ product, onClose }: QuoteModalProps) {
                 </svg>
               </div>
               <h4 className="text-lg font-bold text-slate-900 mb-2">Quote Request Submitted!</h4>
-              <p className="text-slate-600">We'll get back to you within 24 hours.</p>
+              <p className="text-slate-600">We&apos;ll get back to you within 24 hours.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,7 +106,7 @@ function QuoteModal({ product, onClose }: QuoteModalProps) {
                 <textarea rows={3} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none resize-none" placeholder="Additional requirements..." />
               </div>
 
-              <button type="submit" className="w-full py-3 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
+              <button type="submit" className="w-full py-3 bg-linear-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                 Submit Quote Request
               </button>
             </form>
@@ -141,7 +141,7 @@ export default function MedicalEquipmentPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800">
+      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
         <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`, backgroundSize: '40px 40px' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -190,7 +190,7 @@ export default function MedicalEquipmentPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={viewportOptions} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
               <motion.div key={product.id} variants={fadeInUp} className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all duration-300">
-                <div className="relative h-48 bg-gradient-to-br from-emerald-50 to-brand-50 flex items-center justify-center">
+                <div className="relative h-48 bg-linear-to-br from-emerald-50 to-brand-50 flex items-center justify-center">
                   <div className="w-20 h-20 rounded-2xl bg-brand-100/50 flex items-center justify-center">
                     <Package className="w-10 h-10 text-brand-400" />
                   </div>

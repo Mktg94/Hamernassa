@@ -34,7 +34,7 @@ export default function PartnersPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800">
+      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
         <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`, backgroundSize: '40px 40px' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -57,7 +57,7 @@ export default function PartnersPage() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <AnimatedSection>
-              <div className="bg-gradient-to-br from-brand-50 to-white rounded-2xl p-8 border border-brand-100 h-full text-center">
+              <div className="bg-linear-to-br from-brand-50 to-white rounded-2xl p-8 border border-brand-100 h-full text-center">
                 <div className="w-16 h-16 rounded-2xl bg-brand-800 flex items-center justify-center mx-auto mb-6">
                   <Building className="w-8 h-8 text-white" />
                 </div>
@@ -72,7 +72,7 @@ export default function PartnersPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <div className="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 border border-emerald-100 h-full text-center">
+              <div className="bg-linear-to-br from-emerald-50 to-white rounded-2xl p-8 border border-emerald-100 h-full text-center">
                 <div className="w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-white" />
                 </div>
@@ -87,7 +87,7 @@ export default function PartnersPage() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-200 h-full text-center">
+              <div className="bg-linear-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-200 h-full text-center">
                 <div className="w-16 h-16 rounded-2xl bg-slate-700 flex items-center justify-center mx-auto mb-6">
                   <Handshake className="w-8 h-8 text-white" />
                 </div>
@@ -135,7 +135,7 @@ export default function PartnersPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {certificationPartners.map((cert) => (
               <AnimatedSection key={cert.id}>
-                <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 text-center">
+                <div className="bg-linear-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 text-center">
                   <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl">🏅</span>
                   </div>
@@ -150,10 +150,10 @@ export default function PartnersPage() {
       </section>
 
       {/* Partner Form CTA */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-900 text-white">
+      <section className="py-20 lg:py-28 bg-linear-to-br from-brand-900 via-brand-800 to-brand-900 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Become a Partner</h2>
-          <p className="text-lg text-slate-300 mb-8">Ready to join our network of trusted partners? Submit your inquiry and we'll be in touch.</p>
+          <p className="text-lg text-slate-300 mb-8">Ready to join our network of trusted partners? Submit your inquiry and we&apos;ll be in touch.</p>
           <button onClick={() => setShowPartnerForm(true)} className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-800 font-bold rounded-xl hover:bg-slate-50 transition-all">
             Partnership Inquiry
             <ArrowRight className="w-5 h-5" />
@@ -219,7 +219,7 @@ export default function PartnersPage() {
                     <textarea rows={3} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none resize-none" placeholder="Tell us about your products or services..." />
                   </div>
 
-                  <button type="submit" className="w-full py-3 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all">Submit Inquiry</button>
+                  <button type="submit" className="w-full py-3 bg-linear-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all">Submit Inquiry</button>
                 </form>
               )}
             </div>

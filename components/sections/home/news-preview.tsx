@@ -13,7 +13,7 @@ export default function NewsPreview() {
   const recentNews = getRecentNews(3);
 
   return (
-    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-slate-50 to-white">
+    <section className="relative py-20 lg:py-28 bg-linear-to-b from-slate-50 to-white">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
@@ -44,7 +44,7 @@ export default function NewsPreview() {
               className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-emerald-200 shadow-soft hover:shadow-xl transition-all duration-300"
             >
               {/* Image Placeholder */}
-              <div className="relative h-48 bg-gradient-to-br from-brand-100 to-emerald-50 flex items-center justify-center">
+              <div className="relative h-48 bg-linear-to-br from-brand-100 to-emerald-50 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-2xl bg-brand-200/50 flex items-center justify-center">
                   <span className="text-2xl">📰</span>
                 </div>
@@ -101,7 +101,7 @@ export default function NewsPreview() {
         >
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             View All News
             <ArrowRight className="w-5 h-5" />

@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0" style={{
@@ -57,7 +57,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Vision */}
-            <AnimatedSection className="bg-gradient-to-br from-brand-50 to-white rounded-3xl p-8 lg:p-12 border border-brand-100">
+            <AnimatedSection className="bg-linear-to-br from-brand-50 to-white rounded-3xl p-8 lg:p-12 border border-brand-100">
               <div className="w-14 h-14 rounded-2xl bg-brand-800 flex items-center justify-center mb-6">
                 <Eye className="w-7 h-7 text-white" />
               </div>
@@ -69,32 +69,32 @@ export default function AboutPage() {
             </AnimatedSection>
 
             {/* Mission */}
-            <AnimatedSection delay={0.1} className="bg-gradient-to-br from-emerald-50 to-white rounded-3xl p-8 lg:p-12 border border-emerald-100">
+            <AnimatedSection delay={0.1} className="bg-linear-to-br from-emerald-50 to-white rounded-3xl p-8 lg:p-12 border border-emerald-100">
               <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center mb-6">
                 <Target className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Our Mission</h2>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
                     <Shield className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                   <span className="text-slate-600">Expand healthcare access across Ethiopia</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
                     <Shield className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                   <span className="text-slate-600">Provide quality and safe pharmaceutical products</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
                     <Shield className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                   <span className="text-slate-600">Deliver competitive healthcare solutions</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
                     <Shield className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                   <span className="text-slate-600">Support the healthcare sector with excellence</span>
@@ -147,8 +147,8 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <AnimatedSection key={member.id} delay={index * 0.1}>
-                <div className="group bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border border-slate-100 hover:border-brand-200 transition-all duration-300">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-100 to-emerald-50 flex items-center justify-center mb-4 mx-auto">
+                <div className="group bg-linear-to-br from-slate-50 to-white rounded-2xl p-6 border border-slate-100 hover:border-brand-200 transition-all duration-300">
+                  <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-brand-100 to-emerald-50 flex items-center justify-center mb-4 mx-auto">
                     <span className="text-3xl font-bold text-brand-800">
                       {member.name.split(' ').map(n => n[0]).join('').substring(0, 2)}
                     </span>
@@ -196,7 +196,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-brand-800 to-brand-700">
+      <section className="py-20 bg-linear-to-r from-brand-800 to-brand-700">
         <div className="max-w-4xl mx-auto px-4 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Want to Learn More?</h2>
           <p className="text-lg text-slate-200 mb-8">

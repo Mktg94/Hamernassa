@@ -7,7 +7,7 @@ import SectionHeader from "@/components/shared/section-header";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-hero-gradient">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Gradient Orbs */}
@@ -24,7 +24,7 @@ export default function Hero() {
         <div className="absolute top-60 right-1/3 w-4 h-4 bg-emerald-300/20 rounded-full animate-float delay-1500" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-0">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="text-white">
@@ -36,7 +36,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8"
             >
               <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-white/90">Ethiopia's Trusted Healthcare Partner</span>
+              <span className="text-sm font-medium text-white/90">Ethiopia&apos;s Trusted Healthcare Partner</span>
             </motion.div>
 
             {/* Headline */}
@@ -47,7 +47,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
             >
               Trusted Pharmaceutical & Medical Equipment
-              <span className="block mt-2 bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+              <span className="block mt-2 bg-linear-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
                 Import Solutions
               </span>
             </motion.h1>
@@ -157,7 +157,7 @@ export default function Hero() {
 
               {/* Bottom Decoration */}
               <div className="mt-6 flex items-center gap-3">
-                <div className="w-12 h-1 bg-gradient-to-r from-emerald-400 to-brand-500 rounded-full" />
+                <div className="w-12 h-1 bg-linear-to-r from-emerald-400 to-brand-500 rounded-full" />
                 <p className="text-sm text-slate-300">Serving Ethiopia Since Day One</p>
               </div>
             </div>

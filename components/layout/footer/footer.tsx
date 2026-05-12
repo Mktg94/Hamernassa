@@ -23,7 +23,7 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-emerald-600 flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 rounded-xl bg-linear-to-br from-brand-600 to-emerald-600 flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-xl">H</span>
                 </div>
                 <div>
@@ -106,7 +106,7 @@ export default function Footer() {
               <h4 className="text-white font-semibold mb-5">Contact Us</h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-brand-800/50 flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-brand-800/50 flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4 text-emerald-400" />
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed">
@@ -115,7 +115,7 @@ export default function Footer() {
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-brand-800/50 flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-brand-800/50 flex items-center justify-center shrink-0">
                     <Phone className="w-4 h-4 text-emerald-400" />
                   </div>
                   <a
@@ -126,7 +126,7 @@ export default function Footer() {
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-brand-800/50 flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-brand-800/50 flex items-center justify-center shrink-0">
                     <Mail className="w-4 h-4 text-emerald-400" />
                   </div>
                   <a
