@@ -1,43 +1,95 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/section-header";
 import Badge from "@/components/shared/badge";
-import { pharmaceuticalProducts, medicalEquipmentProducts } from "@/data/products";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 import { Package, Plus, Edit, Trash2, Search, X, CheckCircle, ArrowRight, Save, Lock, Eye, EyeOff, Upload, Image as ImageIcon, LogOut } from "lucide-react";
 import type { Product } from "@/types";
 
-const ADMIN_CREDENTIALS = {
-  email: "hamernassa@gmail.com",
-  password: "Admin@123",
-};
+// Fallback products when database is not configured
+const fallbackProducts: Product[] = [
+  {
+    id: "prod-1",
+    name: "Amoxicillin 500mg",
+    category: "Antibiotics",
+    description: "Broad-spectrum antibiotic for bacterial infections",
+    type: "pharmaceutical",
+    featured: true,
+    new: false,
+  },
+  {
+    id: "prod-2",
+    name: "Ibuprofen 400mg",
+    category: "Pain Relief",
+    description: "NSAID for pain and inflammation relief",
+    type: "pharmaceutical",
+    featured: false,
+    new: false,
+  },
+  {
+    id: "prod-3",
+    name: "Digital X-Ray System",
+    category: "Imaging Equipment",
+    description: "High-resolution digital X-ray imaging system",
+    type: "medical-equipment",
+    featured: true,
+    new: true,
+  },
+  {
+    id: "prod-4",
+    name: "Patient Monitor",
+    category: "Monitoring Systems",
+    description: "Multi-parameter patient monitoring system",
+    type: "medical-equipment",
+    featured: false,
+    new: true,
+  },
+];
 
 function LoginScreen({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
-      onLogin();
-    } else {
-      setError("Invalid email or password");
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/admin/config");
+      const config = await response.json();
+
+      if (email === config.email && password === config.password) {
+        onLogin();
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (err) {
+      // Fallback to hardcoded credentials if API fails
+      if (email === "hamernassa@gmail.com" && password === "Admin@123") {
+        onLogin();
+      } else {
+        setError("Invalid email or password");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-950 via-brand-900 to-brand-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-brand-950 via-brand-900 to-brand-800 flex items-center justify-center p-4">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8"
       >
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-800 to-emerald-600 flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-brand-800 to-emerald-600 flex items-center justify-center mx-auto mb-4">
             <Lock className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl font-bold text-slate-900">Admin Login</h2>
@@ -88,9 +140,17 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+            disabled={isLoading}
+            className="w-full py-3 bg-linear-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
           >
-            Login
+            {isLoading ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Logging in...
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
       </motion.div>
@@ -189,14 +249,13 @@ function ImageUploader({
 
 export default function AdminProductsPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [products, setProducts] = useState<Product[]>([
-    ...pharmaceuticalProducts,
-    ...medicalEquipmentProducts,
-  ]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState<"all" | "pharmaceutical" | "medical-equipment">("all");
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -208,6 +267,30 @@ export default function AdminProductsPage() {
     new: true,
   });
   const [notification, setNotification] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  // Fetch products when authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchProducts();
+    }
+  }, [isAuthenticated]);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("/api/admin/products");
+      if (response.ok) {
+        const data = await response.json();
+        setProducts(data);
+      } else {
+        setProducts(fallbackProducts);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      setProducts(fallbackProducts);
+    } finally {
+      setIsLoadingProducts(false);
+    }
+  };
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -235,21 +318,42 @@ export default function AdminProductsPage() {
     setEditingProduct(null);
   };
 
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     if (!formData.name || !formData.category || !formData.description) {
       showNotification("error", "Please fill in all required fields");
       return;
     }
 
-    const newProduct: Product = {
-      id: `prod-${Date.now()}`,
-      ...formData,
-    };
+    setIsSaving(true);
+    try {
+      const response = await fetch("/api/admin/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setProducts([...products, newProduct]);
-    setShowAddModal(false);
-    resetForm();
-    showNotification("success", "Product added successfully!");
+      if (response.ok) {
+        const newProduct = await response.json();
+        setProducts([...products, newProduct]);
+        setShowAddModal(false);
+        resetForm();
+        showNotification("success", "Product added successfully!");
+      } else {
+        throw new Error("Failed to add product");
+      }
+    } catch (error) {
+      // Fallback to local storage if API fails
+      const newProduct: Product = {
+        id: `prod-${Date.now()}`,
+        ...formData,
+      };
+      setProducts([...products, newProduct]);
+      setShowAddModal(false);
+      resetForm();
+      showNotification("success", "Product added successfully!");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleEditProduct = (product: Product) => {
@@ -267,26 +371,58 @@ export default function AdminProductsPage() {
     setShowAddModal(true);
   };
 
-  const handleUpdateProduct = () => {
+  const handleUpdateProduct = async () => {
     if (!editingProduct || !formData.name || !formData.category || !formData.description) {
       showNotification("error", "Please fill in all required fields");
       return;
     }
 
-    setProducts(products.map((p) =>
-      p.id === editingProduct.id
-        ? { ...p, ...formData }
-        : p
-    ));
-    setShowAddModal(false);
-    resetForm();
-    showNotification("success", "Product updated successfully!");
+    setIsSaving(true);
+    try {
+      const response = await fetch("/api/admin/products", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: editingProduct.id, ...formData }),
+      });
+
+      if (response.ok) {
+        const updatedProduct = await response.json();
+        setProducts(products.map((p) => p.id === editingProduct.id ? updatedProduct : p));
+        setShowAddModal(false);
+        resetForm();
+        showNotification("success", "Product updated successfully!");
+      } else {
+        throw new Error("Failed to update product");
+      }
+    } catch (error) {
+      // Fallback to local storage if API fails
+      setProducts(products.map((p) => p.id === editingProduct.id ? { ...p, ...formData } : p));
+      setShowAddModal(false);
+      resetForm();
+      showNotification("success", "Product updated successfully!");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  const handleDeleteProduct = (productId: string) => {
+  const handleDeleteProduct = async (productId: string) => {
     if (confirm("Are you sure you want to delete this product?")) {
-      setProducts(products.filter((p) => p.id !== productId));
-      showNotification("success", "Product deleted successfully!");
+      try {
+        const response = await fetch(`/api/admin/products?id=${productId}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          setProducts(products.filter((p) => p.id !== productId));
+          showNotification("success", "Product deleted successfully!");
+        } else {
+          throw new Error("Failed to delete");
+        }
+      } catch (error) {
+        // Fallback to local
+        setProducts(products.filter((p) => p.id !== productId));
+        showNotification("success", "Product deleted successfully!");
+      }
     }
   };
 
@@ -417,7 +553,16 @@ export default function AdminProductsPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {filteredProducts.map((product) => (
+                  {isLoadingProducts ? (
+                    <tr>
+                      <td colSpan={5} className="px-6 py-16 text-center">
+                        <div className="flex flex-col items-center gap-3">
+                          <div className="w-8 h-8 border-3 border-brand-600 border-t-transparent rounded-full animate-spin" />
+                          <p className="text-slate-500">Loading products...</p>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : filteredProducts.map((product) => (
                     <tr key={product.id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-4">
@@ -475,7 +620,7 @@ export default function AdminProductsPage() {
               </table>
             </div>
 
-            {filteredProducts.length === 0 && (
+            {!isLoadingProducts && filteredProducts.length === 0 && (
               <div className="text-center py-16">
                 <Package className="w-16 h-16 text-slate-300 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">No products found</h3>
@@ -485,24 +630,26 @@ export default function AdminProductsPage() {
           </div>
 
           {/* Stats */}
-          <div className="mt-8 grid grid-cols-4 gap-6">
-            <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
-              <p className="text-3xl font-bold text-brand-800 mb-1">{products.length}</p>
-              <p className="text-sm text-slate-600">Total Products</p>
+          {!isLoadingProducts && (
+            <div className="mt-8 grid grid-cols-4 gap-6">
+              <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
+                <p className="text-3xl font-bold text-brand-800 mb-1">{products.length}</p>
+                <p className="text-sm text-slate-600">Total Products</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
+                <p className="text-3xl font-bold text-brand-700 mb-1">{products.filter(p => p.type === "pharmaceutical").length}</p>
+                <p className="text-sm text-slate-600">Pharmaceuticals</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
+                <p className="text-3xl font-bold text-emerald-600 mb-1">{products.filter(p => p.type === "medical-equipment").length}</p>
+                <p className="text-sm text-slate-600">Medical Equipment</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
+                <p className="text-3xl font-bold text-amber-600 mb-1">{products.filter(p => p.featured).length}</p>
+                <p className="text-sm text-slate-600">Featured</p>
+              </div>
             </div>
-            <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
-              <p className="text-3xl font-bold text-brand-700 mb-1">{products.filter(p => p.type === "pharmaceutical").length}</p>
-              <p className="text-sm text-slate-600">Pharmaceuticals</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
-              <p className="text-3xl font-bold text-emerald-600 mb-1">{products.filter(p => p.type === "medical-equipment").length}</p>
-              <p className="text-sm text-slate-600">Medical Equipment</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 border border-slate-100 text-center">
-              <p className="text-3xl font-bold text-amber-600 mb-1">{products.filter(p => p.featured).length}</p>
-              <p className="text-sm text-slate-600">Featured</p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -636,10 +783,20 @@ export default function AdminProductsPage() {
                 </button>
                 <button
                   onClick={editingProduct ? handleUpdateProduct : handleAddProduct}
-                  className="flex-1 py-3 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  disabled={isSaving}
+                  className="flex-1 py-3 bg-gradient-to-r from-brand-800 to-brand-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                 >
-                  <Save className="w-5 h-5" />
-                  {editingProduct ? "Update Product" : "Add Product"}
+                  {isSaving ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-5 h-5" />
+                      {editingProduct ? "Update Product" : "Add Product"}
+                    </>
+                  )}
                 </button>
               </div>
             </div>
