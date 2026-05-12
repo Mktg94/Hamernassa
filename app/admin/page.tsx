@@ -287,7 +287,12 @@ export default function AdminProductsPage() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("/api/admin/products");
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch("/api/admin/products", { signal: controller.signal });
+      clearTimeout(timeout);
+
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
