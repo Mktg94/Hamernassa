@@ -65,6 +65,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
       const config = await response.json();
 
       if (email === config.email && password === config.password) {
+        localStorage.setItem("adminAuthenticated", "true");
         onLogin();
       } else {
         setError("Invalid email or password");
@@ -72,6 +73,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
     } catch (err) {
       // Fallback to hardcoded credentials if API fails
       if (email === "hamernassa@gmail.com" && password === "Admin@123") {
+        localStorage.setItem("adminAuthenticated", "true");
         onLogin();
       } else {
         setError("Invalid email or password");
@@ -267,6 +269,14 @@ export default function AdminProductsPage() {
     new: true,
   });
   const [notification, setNotification] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  // Check localStorage on mount
+  useEffect(() => {
+    const storedAuth = localStorage.getItem("adminAuthenticated");
+    if (storedAuth === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   // Fetch products when authenticated
   useEffect(() => {
@@ -474,7 +484,10 @@ export default function AdminProductsPage() {
                 Add Product
               </button>
               <button
-                onClick={() => setIsAuthenticated(false)}
+                onClick={() => {
+                  localStorage.removeItem("adminAuthenticated");
+                  setIsAuthenticated(false);
+                }}
                 className="inline-flex items-center gap-2 px-4 py-3 bg-white/10 text-white font-medium rounded-xl hover:bg-white/20 transition-all"
               >
                 <LogOut className="w-5 h-5" />

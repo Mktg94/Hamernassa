@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/section-header";
 import Badge from "@/components/shared/badge";
-import { medicalEquipmentProducts, medicalEquipmentCategories } from "@/data/products";
+import { medicalEquipmentCategories } from "@/data/products";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 import { Search, Package, ArrowRight, X } from "lucide-react";
+import type { Product } from "@/types";
 
 interface QuoteModalProps {
-  product: typeof medicalEquipmentProducts[0] | null;
+  product: Product | null;
   onClose: () => void;
 }
 
@@ -118,12 +119,34 @@ function QuoteModal({ product, onClose }: QuoteModalProps) {
 }
 
 export default function MedicalEquipmentPage() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedProduct, setSelectedProduct] = useState<typeof medicalEquipmentProducts[0] | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("/api/admin/products");
+      if (response.ok) {
+        const data = await response.json();
+        // Filter only medical equipment products
+        const equipmentProducts = data.filter((p: Product) => p.type === "medical-equipment");
+        setProducts(equipmentProducts);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const filteredProducts = useMemo(() => {
-    return medicalEquipmentProducts.filter((product) => {
+    return products.filter((product) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -131,11 +154,11 @@ export default function MedicalEquipmentPage() {
         selectedCategory === "All" || product.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [products, searchQuery, selectedCategory]);
 
   const getCategoryCount = (category: string) => {
-    if (category === "All") return medicalEquipmentProducts.length;
-    return medicalEquipmentProducts.filter((p) => p.category === category).length;
+    if (category === "All") return products.length;
+    return products.filter((p) => p.category === category).length;
   };
 
   return (
@@ -213,7 +236,14 @@ export default function MedicalEquipmentPage() {
             ))}
           </motion.div>
 
-          {filteredProducts.length === 0 && (
+          {isLoading && (
+            <div className="text-center py-16">
+              <div className="w-8 h-8 border-3 border-brand-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-slate-500">Loading products...</p>
+            </div>
+          )}
+
+          {!isLoading && filteredProducts.length === 0 && (
             <div className="text-center py-16">
               <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-4">
                 <Search className="w-8 h-8 text-slate-400" />
