@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb, getCollection } from "@/lib/db";
-import { uploadImage } from "@/lib/cloudinary";
 import type { Product } from "@/types";
 
 interface ProductDocument extends Product {
@@ -12,6 +11,7 @@ interface ProductDocument extends Product {
 // GET - Fetch all products
 export async function GET() {
   try {
+    console.log("Fetching products from database...");
     const collection = await getCollection<any>("products");
 
     if (!collection) {
@@ -45,11 +45,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Upload image to Cloudinary if it's a base64 string
-    let imageUrl = image;
-    if (image && image.startsWith("data:")) {
-      imageUrl = await uploadImage(image) || image;
-    }
+    // Store image directly (base64 for now, can add Cloudinary later)
+    // For large images, you might want to resize or compress them first
+    const imageUrl = image || "";
 
     const collection = await getCollection<any>("products");
 
@@ -99,11 +97,8 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Upload image to Cloudinary if it's a new base64 string
-    let imageUrl = image;
-    if (image && image.startsWith("data:")) {
-      imageUrl = await uploadImage(image) || image;
-    }
+    // Store image directly
+    const imageUrl = image || "";
 
     const collection = await getCollection<any>("products");
 

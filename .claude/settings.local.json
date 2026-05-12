@@ -10,7 +10,8 @@
       "Bash(mv \"c:\\\\Users\\\\Lenovo\\\\Documents\\\\project\\\\prompt-backup.md\" \"c:\\\\Users\\\\Lenovo\\\\Documents\\\\project\\\\hamernassa\\\\prompt.md\" && ls -la \"c:\\\\Users\\\\Lenovo\\\\Documents\\\\project\\\\hamernassa\")",
       "Bash(npm install *)",
       "Bash(npm run *)",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "Bash(npm list *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Lenovo\\Documents\\project"
