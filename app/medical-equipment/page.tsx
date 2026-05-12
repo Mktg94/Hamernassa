@@ -139,7 +139,14 @@ export default function MedicalEquipmentPage() {
 
       if (response.ok) {
         const data = await response.json();
-        const equipmentProducts = data.filter((p: Product) => p.type === "medical-equipment");
+        console.log("API Response:", data);
+        // More flexible type matching
+        const equipmentProducts = data.filter((p: any) =>
+          p.type === "medical-equipment" ||
+          p.type === "medical equipment" ||
+          (typeof p.type === 'string' && p.type.toLowerCase().includes('medical'))
+        );
+        console.log("Filtered Equipment:", equipmentProducts);
         setProducts(equipmentProducts);
       }
     } catch (error) {
@@ -150,6 +157,15 @@ export default function MedicalEquipmentPage() {
   };
 
   const filteredProducts = useMemo(() => {
+    console.log("Products:", products);
+    console.log("Filtered:", products.filter((product) => {
+      const matchesSearch =
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "All" || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    }));
     return products.filter((product) => {
       const matchesSearch =
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -213,10 +229,10 @@ export default function MedicalEquipmentPage() {
             </div>
           </div>
 
-          {/* Products Grid */}
-          <motion.div initial="hidden" whileInView="visible" viewport={viewportOptions} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
-              <motion.div key={product.id} variants={fadeInUp} className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all duration-300">
+          {/* Products Grid - Debug: showing products count */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((product: any) => (
+              <div key={product.id} className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all duration-300 min-h-[300px]">
                 <div className="relative h-48 bg-linear-to-br from-emerald-50 to-brand-50 flex items-center justify-center overflow-hidden">
                   {product.image ? (
                     <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
@@ -233,16 +249,16 @@ export default function MedicalEquipmentPage() {
 
                 <div className="p-6">
                   <Badge className="mb-3">{product.category}</Badge>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-700 transition-colors">{product.name}</h3>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{product.name}</h3>
                   <p className="text-sm text-slate-600 mb-4 line-clamp-2">{product.description}</p>
                   <button onClick={() => setSelectedProduct(product)} className="w-full flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-brand-800 hover:text-white transition-colors">
                     Request Quote
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {isLoading && (
             <div className="text-center py-16">
