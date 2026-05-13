@@ -30,7 +30,7 @@ export const partners: Partner[] = [
     name: "Dawei",
     type: "manufacturer",
     description: "Dawei is a leading medical device manufacturer in China, providing professional ultrasound machines, ECG devices, and patient monitors for healthcare needs.",
-    logo: "/images/dawei.svg",
+    logo: "/images/Dawei.svg",
   },
   {
     id: "partner-005",
@@ -140,8 +140,10 @@ export const getPartnersByType = (type: Partner["type"]): Partner[] => {
   return partners.filter((p) => p.type === type);
 };
 
+// NOTE: Each partner MUST have a unique id (e.g. "partner-019", "partner-020"…).
+// Duplicate ids will cause partners to be silently skipped by React.
 export const manufacturerPartners = partners.filter(
-  (p) => p.type === "manufacturer"
+  (p) => p.type === "manufacturer" || p.type === "supplier"
 );
 export const certificationPartners = partners.filter(
   (p) => p.type === "certification" || p.type === "regulatory"
