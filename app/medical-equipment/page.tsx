@@ -200,6 +200,83 @@ export default function MedicalEquipmentPage() {
         </div>
       </section>
 
+      {/* ── Services Section ─────────────────────────────────────────── */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="text-emerald-600 text-sm font-semibold tracking-widest uppercase mb-3 block">
+              What We Offer
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              Our Medical Equipment Services
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: "📦",
+                title: "Supply of Equipment",
+                description:
+                  "Medical and laboratory equipment sourced from trusted local and international suppliers.",
+                gradient: "from-brand-700 to-brand-600",
+              },
+              {
+                icon: "🔧",
+                title: "Installation & Commissioning",
+                description:
+                  "Professional installation of all medical and lab equipment to ensure safe and correct setup.",
+                gradient: "from-emerald-600 to-emerald-500",
+              },
+              {
+                icon: "🎓",
+                title: "User Training",
+                description:
+                  "On-site training for staff to ensure proper and efficient use of installed equipment.",
+                gradient: "from-slate-700 to-slate-600",
+              },
+              {
+                icon: "🛠️",
+                title: "After-Sales Service",
+                description:
+                  "Ongoing technical support and maintenance to keep your equipment running smoothly.",
+                gradient: "from-amber-600 to-amber-500",
+              },
+            ].map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative bg-white rounded-2xl p-6 border border-slate-100 hover:border-transparent hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div
+                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-2xl mb-5 shadow-md group-hover:scale-110 transition-transform`}
+                >
+                  {service.icon}
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {service.description}
+                </p>
+                <div
+                  className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${service.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="py-16 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

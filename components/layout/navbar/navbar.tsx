@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navigationLinks, siteConfig } from "@/lib/site";
+import { navigationLinks } from "@/lib/site";
 import QuoteModal from "@/components/shared/quote-modal";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -45,11 +45,11 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-12">
+          <div className="flex items-center justify-between h-28">
 
             {/* ── Logo ── */}
-            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-9 h-9 relative rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow overflow-hidden">
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="w-32 h-32 relative rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow overflow-hidden">
                 <Image
                   src="/images/hlogo.svg"
                   alt="Hamernassa Logo"
@@ -59,13 +59,13 @@ export default function Navbar() {
               </div>
               <div className="hidden sm:block leading-tight">
                 <span className={cn(
-                  "block font-bold text-base transition-colors",
+                  "block font-bold text-2xl tracking-tight transition-colors",
                   isScrolled ? "text-slate-900" : "text-white"
                 )}>
                   Hamernassa
                 </span>
                 <span className={cn(
-                  "block text-[10px] font-medium transition-colors",
+                  "block text-sm font-medium transition-colors",
                   isScrolled ? "text-slate-400" : "text-white/70"
                 )}>
                   Pharmaceuticals plc
@@ -102,17 +102,6 @@ export default function Navbar() {
 
             {/* ── Desktop CTA ── */}
             <div className="hidden lg:flex items-center gap-3 shrink-0">
-              <a
-                href={`tel:${siteConfig.contact.phone}`}
-                className={cn(
-                  "flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap",
-                  isScrolled ? "text-slate-500 hover:text-brand-700" : "text-white/80 hover:text-white"
-                )}
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span className="hidden xl:inline">{siteConfig.contact.phone}</span>
-              </a>
-
               <button
                 onClick={openQuote}
                 className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-linear-to-r from-brand-800 to-brand-700 text-white shadow-sm hover:shadow-md hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 whitespace-nowrap"
@@ -167,7 +156,7 @@ export default function Navbar() {
                     className="flex items-center gap-2.5"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="w-9 h-9 relative rounded-lg flex items-center justify-center overflow-hidden">
+                    <div className="w-16 h-16 relative rounded-xl flex items-center justify-center overflow-hidden">
                       <Image
                         src="/images/hlogo.svg"
                         alt="Hamernassa Logo"
@@ -176,8 +165,8 @@ export default function Navbar() {
                       />
                     </div>
                     <div className="leading-tight">
-                      <span className="block font-bold text-slate-900">Hamernassa</span>
-                      <span className="block text-[10px] text-slate-400">Pharmaceuticals plc</span>
+                      <span className="block font-bold text-lg text-slate-900">Hamernassa</span>
+                      <span className="block text-xs text-slate-400">Pharmaceuticals plc</span>
                     </div>
                   </Link>
                   <button
@@ -205,13 +194,6 @@ export default function Navbar() {
 
               {/* Mobile footer actions */}
               <div className="p-5 border-t border-slate-100 space-y-3">
-                <a
-                  href={`tel:${siteConfig.contact.phone}`}
-                  className="flex items-center gap-3 px-3 py-2.5 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors text-sm"
-                >
-                  <Phone className="w-4 h-4 text-brand-600" />
-                  <span className="font-medium">{siteConfig.contact.phone}</span>
-                </a>
                 <button
                   onClick={openQuote}
                   className="w-full py-3 text-center text-sm font-semibold bg-linear-to-r from-brand-800 to-brand-700 text-white rounded-lg hover:shadow-lg transition-all"

@@ -250,6 +250,76 @@ export default function PharmaceuticalsPage() {
         </div>
       </section>
 
+      {/* ── Services Section ─────────────────────────────────────────── */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="text-emerald-600 text-sm font-semibold tracking-widest uppercase mb-3 block">
+              What We Offer
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              Our Pharmaceutical Services
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "💊",
+                title: "Supply of Human Medicines",
+                description:
+                  "We provide a wide range of high-quality pharmaceutical products sourced both locally and internationally.",
+                gradient: "from-brand-700 to-brand-600",
+              },
+              {
+                icon: "🧪",
+                title: "Laboratory Reagents & Consumables",
+                description:
+                  "Reliable supply of laboratory reagents, chemicals, and related consumables for clinical and research use.",
+                gradient: "from-emerald-600 to-emerald-500",
+              },
+              {
+                icon: "🚚",
+                title: "Free Delivery",
+                description:
+                  "Timely and cost-free delivery of all pharmaceutical items directly to your facility.",
+                gradient: "from-violet-600 to-violet-500",
+              },
+            ].map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative bg-white rounded-2xl p-8 border border-slate-100 hover:border-transparent hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-3xl mb-6 shadow-md group-hover:scale-110 transition-transform`}
+                >
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {service.description}
+                </p>
+                <div
+                  className={`absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r ${service.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="py-16 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
