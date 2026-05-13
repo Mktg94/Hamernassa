@@ -14,7 +14,7 @@ export const partners: Partner[] = [
     name: "WHO",
     type: "certification",
     description: "World Health Organization GMP Compliance",
-    logo: null,
+    logo: "/images/Who.svg",
   },
   {
     id: "partner-003",
@@ -34,10 +34,10 @@ export const partners: Partner[] = [
   },
   {
     id: "partner-005",
-    name: "Mylan",
+    name: "Mindray",
     type: "manufacturer",
-    description: "Global generic pharmaceutical company",
-    logo: null,
+    description: "Mindray is a innovative global provider of medical devices and solutions. Discover our voyage of healthcare from China to the world",
+    logo: "/images/mindray.png",
   },
   {
     id: "partner-006",
@@ -47,7 +47,6 @@ export const partners: Partner[] = [
     logo: "/images/sun-pharma.svg",
   },
   {
-    // Lupin replaced by Samsung
     id: "partner-007",
     name: "Samsung",
     type: "manufacturer",
@@ -68,28 +67,28 @@ export const partners: Partner[] = [
     name: "Philips Healthcare",
     type: "manufacturer",
     description: "Global leader in medical technology",
-    logo: null,
+    logo: "/images/philips.png",
   },
   {
     id: "partner-010",
     name: "Siemens Healthineers",
     type: "manufacturer",
     description: "Leading medical imaging and laboratory diagnostics",
-    logo: null,
+    logo: "/images/siemens_healthineers.png",
   },
   {
     id: "partner-011",
     name: "GE Healthcare",
     type: "manufacturer",
     description: "Innovative medical technology solutions",
-    logo: null,
+    logo: "/images/GE_HealthCare.png",
   },
   {
     id: "partner-012",
-    name: "Medtronic",
+    name: "Invacare",
     type: "manufacturer",
-    description: "Global leader in medical devices",
-    logo: null,
+    description: "Focused on manufacturing and distributing home healthcare and mobility equipment",
+    logo: "/images/invacare.svg",
   },
 
   // Healthcare Partners

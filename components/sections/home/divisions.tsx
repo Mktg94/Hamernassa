@@ -25,8 +25,8 @@ const divisions = [
     cardGradient: "from-brand-700 to-brand-600",
     overlayGradient: "from-brand-900/85 via-brand-800/50 to-brand-900/75",
     accentColor: "border-brand-400/60",
-    // Pills / medicine bottles
-    image: cfetch("photo-1584308666744-24d5c474f2ae"),
+    // Medicine bottles & blister packs — no people
+    image: cfetch("photo-1587854692152-cbe660dbde88"),
   },
   {
     title: "Medical Equipment",
@@ -37,8 +37,8 @@ const divisions = [
     cardGradient: "from-emerald-600 to-emerald-500",
     overlayGradient: "from-emerald-900/85 via-emerald-800/50 to-slate-900/75",
     accentColor: "border-emerald-400/60",
-    // Hospital room / ICU equipment
-    image: cfetch("photo-1516549655169-df83a0774514"),
+    // Stainless steel surgical instruments on a tray — no people
+    image: cfetch("photo-1551601651-2a8555f1a136"),
   },
   {
     title: "Biomedical Solutions",
@@ -49,8 +49,8 @@ const divisions = [
     cardGradient: "from-slate-700 to-slate-600",
     overlayGradient: "from-slate-900/85 via-slate-800/50 to-slate-900/75",
     accentColor: "border-slate-400/60",
-    // Scientific laboratory / microscope
-    image: cfetch("photo-1582719471384-894fbb16e074"),
+    // Borosilicate lab flasks & glassware — no people
+    image: cfetch("photo-1518152006812-edab29b069ac"),
   },
   {
     title: "Healthcare Supply",
@@ -61,8 +61,8 @@ const divisions = [
     cardGradient: "from-brand-800 to-brand-700",
     overlayGradient: "from-brand-900/85 via-brand-900/50 to-slate-900/75",
     accentColor: "border-brand-300/60",
-    // Medical supply / warehouse logistics
-    image: cfetch("photo-1586773860418-d37222d8fce3"),
+    // Coloured pill capsules arranged — products, no people
+    image: cfetch("photo-1471864190281-a93a3070b6de"),
   },
 ];
 
