@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Globe, ArrowRight } from "lucide-react";
 import { siteConfig, footerLinks } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -23,12 +24,17 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-linear-to-br from-brand-600 to-emerald-600 flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xl">H</span>
+                <div className="w-12 h-12 relative rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+                  <Image
+                    src="/images/hlogo.svg"
+                    alt="Hamernassa Logo"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
                 <div>
-                  <span className="font-bold text-xl text-white">HPP</span>
-                  <p className="text-xs text-slate-400">Pharmaceuticals PLC</p>
+                  <span className="font-bold text-xl text-white">Hamernassa</span>
+                  <p className="text-xs text-slate-400">Pharmaceuticals plc</p>
                 </div>
               </Link>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">

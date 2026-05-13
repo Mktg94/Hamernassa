@@ -41,7 +41,7 @@ export default function CTASection() {
             variants={fadeInUp}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
           >
-            Ready to Partner with HPP?
+            Ready to Partner with Hamernassa?
           </motion.h2>
 
           <motion.p

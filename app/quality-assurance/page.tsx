@@ -89,7 +89,7 @@ export default function QualityAssurancePage() {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-300 max-w-3xl mx-auto"
           >
-            At HPP, quality is not just a priority—it is the foundation of everything we do.
+            At Hamernassa, quality is not just a priority—it is the foundation of everything we do.
             Our comprehensive quality assurance program ensures that every product meets
             the highest standards of safety, efficacy, and reliability.
           </motion.p>

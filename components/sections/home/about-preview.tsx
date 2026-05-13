@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import SectionHeader from "@/components/shared/section-header";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 
@@ -19,13 +20,14 @@ export default function AboutPreview() {
           >
             {/* Main Visual */}
             <div className="relative bg-linear-to-br from-brand-100 to-emerald-50 rounded-3xl p-8 lg:p-12">
-              <div className="aspect-square bg-white rounded-2xl shadow-lg flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 mx-auto rounded-2xl bg-linear-to-br from-brand-800 to-emerald-600 flex items-center justify-center mb-6 shadow-lg">
-                    <span className="text-white font-bold text-4xl">H</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">HPP</h3>
-                  <p className="text-slate-600">Pharmaceuticals PLC</p>
+              <div className="aspect-square bg-white rounded-2xl shadow-lg flex items-center justify-center p-6 lg:p-8">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Image
+                    src="/images/hlogo.svg"
+                    alt="Hamernassa Pharmaceuticals"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
 

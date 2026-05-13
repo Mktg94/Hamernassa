@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -48,21 +49,26 @@ export default function Navbar() {
 
             {/* ── Logo ── */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-9 h-9 rounded-lg bg-linear-to-br from-brand-800 to-emerald-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-                <span className="text-white font-bold text-base">H</span>
+              <div className="w-9 h-9 relative rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow overflow-hidden">
+                <Image
+                  src="/images/hlogo.svg"
+                  alt="Hamernassa Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="hidden sm:block leading-tight">
                 <span className={cn(
                   "block font-bold text-base transition-colors",
                   isScrolled ? "text-slate-900" : "text-white"
                 )}>
-                  HPP
+                  Hamernassa
                 </span>
                 <span className={cn(
                   "block text-[10px] font-medium transition-colors",
                   isScrolled ? "text-slate-400" : "text-white/70"
                 )}>
-                  Pharmaceuticals
+                  Pharmaceuticals plc
                 </span>
               </div>
             </Link>
@@ -161,12 +167,17 @@ export default function Navbar() {
                     className="flex items-center gap-2.5"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="w-9 h-9 rounded-lg bg-linear-to-br from-brand-800 to-emerald-600 flex items-center justify-center">
-                      <span className="text-white font-bold">H</span>
+                    <div className="w-9 h-9 relative rounded-lg flex items-center justify-center overflow-hidden">
+                      <Image
+                        src="/images/hlogo.svg"
+                        alt="Hamernassa Logo"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                     <div className="leading-tight">
-                      <span className="block font-bold text-slate-900">HPP</span>
-                      <span className="block text-[10px] text-slate-400">Pharmaceuticals</span>
+                      <span className="block font-bold text-slate-900">Hamernassa</span>
+                      <span className="block text-[10px] text-slate-400">Pharmaceuticals plc</span>
                     </div>
                   </Link>
                   <button

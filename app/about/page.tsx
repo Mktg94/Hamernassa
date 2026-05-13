@@ -29,7 +29,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               className="inline-block text-emerald-400 text-sm font-semibold tracking-wider uppercase mb-4"
             >
-              About HPP
+              About Hamernassa
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}

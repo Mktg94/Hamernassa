@@ -63,7 +63,7 @@ export default function Features() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           subtitle="Why Choose Us"
-          title="The HPP Advantage"
+          title="The Hamernassa Advantage"
           description="Partner with a company that understands the unique challenges of Ethiopian healthcare delivery."
           light
           className="mb-16"
