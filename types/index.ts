@@ -24,7 +24,7 @@ export interface NewsArticle {
 export interface Partner {
   id: string;
   name: string;
-  logo?: string;
+  logo?: string | null;
   type: "manufacturer" | "supplier" | "regulatory" | "certification";
   description?: string;
 }

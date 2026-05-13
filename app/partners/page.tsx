@@ -2,12 +2,42 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import SectionHeader from "@/components/shared/section-header";
 import AnimatedSection from "@/components/shared/animated-section";
 import Badge from "@/components/shared/badge";
 import { manufacturerPartners, certificationPartners } from "@/data/partners";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 import { Handshake, Users, Building, ArrowRight, X, CheckCircle } from "lucide-react";
+
+/** Renders an SVG logo or falls back to styled initials */
+function PartnerLogo({ name, logo }: { name: string; logo?: string | null }) {
+  if (logo) {
+    return (
+      <div className="relative h-14 w-40 flex items-center justify-center">
+        <Image
+          src={logo}
+          alt={`${name} logo`}
+          fill
+          className="object-contain"
+          sizes="180px"
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="flex flex-col items-center gap-1.5">
+      <div className="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center">
+        <span className="text-brand-800 font-bold text-lg">
+          {name.substring(0, 2).toUpperCase()}
+        </span>
+      </div>
+      <p className="text-xs font-semibold text-slate-600 text-center leading-tight max-w-[90px]">
+        {name}
+      </p>
+    </div>
+  );
+}
 
 export default function PartnersPage() {
   const [showPartnerForm, setShowPartnerForm] = useState(false);
@@ -111,16 +141,22 @@ export default function PartnersPage() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={viewportOptions} variants={staggerContainer} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {manufacturerPartners.map((partner) => (
-              <motion.div key={partner.id} variants={fadeInUp} className="bg-white rounded-xl p-6 border border-slate-100 hover:border-brand-200 hover:shadow-lg transition-all">
-                <div className="h-20 flex items-center justify-center mb-4">
-                  <div className="text-center">
-                    <div className="w-14 h-14 rounded-xl bg-brand-100 flex items-center justify-center mx-auto mb-2">
-                      <span className="text-brand-800 font-bold text-lg">{partner.name.substring(0, 2).toUpperCase()}</span>
-                    </div>
-                    <p className="font-semibold text-slate-700">{partner.name}</p>
-                  </div>
+              <motion.div
+                key={partner.id}
+                variants={fadeInUp}
+                className="group bg-white rounded-xl p-6 border border-slate-100 hover:border-brand-200 hover:shadow-lg transition-all flex flex-col items-center text-center"
+              >
+                {/* Logo or initials */}
+                <div className="h-20 flex items-center justify-center mb-3">
+                  <PartnerLogo name={partner.name} logo={partner.logo} />
                 </div>
-                <p className="text-sm text-slate-500 text-center">{partner.description}</p>
+
+                {/* Name only shown separately when logo is present (initials fallback already includes name) */}
+                {partner.logo && (
+                  <p className="font-semibold text-slate-800 text-sm mb-1">{partner.name}</p>
+                )}
+
+                <p className="text-xs text-slate-500 leading-relaxed">{partner.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -135,9 +171,24 @@ export default function PartnersPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {certificationPartners.map((cert) => (
               <AnimatedSection key={cert.id}>
-                <div className="bg-linear-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">🏅</span>
+                <div className="bg-linear-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 text-center flex flex-col items-center">
+                  {/* Logo or medal icon */}
+                  <div className="h-20 flex items-center justify-center mb-4">
+                    {cert.logo ? (
+                      <div className="relative h-16 w-44">
+                        <Image
+                          src={cert.logo}
+                          alt={`${cert.name} logo`}
+                          fill
+                          className="object-contain"
+                          sizes="200px"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center">
+                        <span className="text-2xl">🏅</span>
+                      </div>
+                    )}
                   </div>
                   <Badge variant="success" className="mb-4">{cert.type.toUpperCase()}</Badge>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">{cert.name}</h3>
