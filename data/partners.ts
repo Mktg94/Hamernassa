@@ -37,7 +37,7 @@ export const partners: Partner[] = [
     name: "Mindray",
     type: "manufacturer",
     description: "Mindray is a innovative global provider of medical devices and solutions. Discover our voyage of healthcare from China to the world.",
-    logo: "/images/mindray.svg",
+    logo: "/images/Mindray.svg",
   },
   {
     id: "partner-006",
