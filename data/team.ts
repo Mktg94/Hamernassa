@@ -3,9 +3,9 @@ import type { TeamMember } from "@/types";
 export const teamMembers: TeamMember[] = [
   {
     id: "team-001",
-    name: "Dr. Abraham Kebede",
+    name: "Ato Abdu Mohamed",
     position: "Chief Executive Officer",
-    bio: "Over 20 years of experience in pharmaceutical distribution and healthcare supply chain management. Led HPP from a single-product operation to a comprehensive healthcare solutions provider.",
+    bio: "Over 10 years of experience in pharmaceutical distribution and healthcare supply chain management. Led HPP from a single-product operation to a comprehensive healthcare solutions provider.",
     image: "/images/team/ceo.jpg"
   },
   {

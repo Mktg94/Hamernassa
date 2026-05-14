@@ -12,7 +12,7 @@ import type { QuoteRequest } from "@/types";
 //
 // If any variable is missing the form still works — email is simply skipped.
 // ────────────────────────────────────────────────────────────────────────────
-const OWNER_EMAIL = process.env.OWNER_EMAIL ?? "";
+const OWNER_EMAIL = process.env.OWNER_EMAIL ?? "mikeabrsh21@gmail.com";
 const EMAIL_USER  = process.env.EMAIL_USER  ?? "";
 const EMAIL_PASS  = process.env.EMAIL_PASS  ?? "";
 

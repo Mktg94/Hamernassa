@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import SectionHeader from "@/components/shared/section-header";
 import AnimatedSection from "@/components/shared/animated-section";
 import Badge from "@/components/shared/badge";
@@ -61,11 +62,10 @@ export default function QualityAssurancePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
+      <section id="quote" className="relative pt-32 pb-20 overflow-hidden">
+        <Image src="/images/modern_hospital.web.p" alt="Quality Assurance" fill priority className="object-cover object-center" sizes="100vw" />
+        <div className="absolute inset-0 bg-brand-950/80" />
+        <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`, backgroundSize: '40px 40px' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <motion.span
@@ -173,7 +173,7 @@ export default function QualityAssurancePage() {
 
           <div className="grid grid-cols-3 gap-8">
             {[
-
+              { value: "100%", label: "Compliance Rate" },
               { value: "24/7", label: "Monitoring" },
               { value: "100%", label: "Batch Traceability" }
             ].map((stat, index) => (
