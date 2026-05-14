@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/section-header";
 import Badge from "@/components/shared/badge";
@@ -216,11 +217,20 @@ export default function PharmaceuticalsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/images/pharma_tablets.webp"
+          alt="Pharmaceutical tablets"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-brand-950/80" />
+        {/* Dot grid */}
+        <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`, backgroundSize: '40px 40px' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <motion.span
@@ -301,7 +311,7 @@ export default function PharmaceuticalsPage() {
                 className="group relative bg-white rounded-2xl p-8 border border-slate-100 hover:border-transparent hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div
-                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-3xl mb-6 shadow-md group-hover:scale-110 transition-transform`}
+                  className={`w-16 h-16 rounded-2xl bg-linear-to-br ${service.gradient} flex items-center justify-center text-3xl mb-6 shadow-md group-hover:scale-110 transition-transform`}
                 >
                   {service.icon}
                 </div>
@@ -312,7 +322,7 @@ export default function PharmaceuticalsPage() {
                   {service.description}
                 </p>
                 <div
-                  className={`absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r ${service.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`}
+                  className={`absolute bottom-0 left-8 right-8 h-0.5 bg-linear-to-r ${service.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`}
                 />
               </motion.div>
             ))}

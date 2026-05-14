@@ -73,7 +73,7 @@ export default function PartnersPreview() {
             <motion.div
               key={partner.id}
               variants={fadeInUp}
-              className="group relative bg-gradient-to-br from-slate-50 to-white rounded-xl p-5 border border-slate-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center min-h-[110px]"
+              className="group relative bg-linear-to-br from-slate-50 to-white rounded-xl p-5 border border-slate-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center min-h-[110px]"
             >
               <PartnerLogo name={partner.name} logo={partner.logo} />
 
@@ -85,7 +85,7 @@ export default function PartnersPreview() {
               )}
 
               {/* Hover shimmer */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 rounded-xl bg-linear-to-br from-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>

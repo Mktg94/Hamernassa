@@ -9,12 +9,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-// Cloudinary fetch delivery — images are pulled from Unsplash and
-// served through the user's Cloudinary CDN with auto quality & format.
-const CLOUD = "draoyxmtm";
-const cfetch = (photoId: string) =>
-  `https://res.cloudinary.com/${CLOUD}/image/fetch/q_auto,f_auto,w_1920,h_1080,c_fill,g_center/https://images.unsplash.com/${photoId}?w=1920&q=85`;
-
 const divisions = [
   {
     title: "Pharmaceuticals",
@@ -25,8 +19,7 @@ const divisions = [
     cardGradient: "from-brand-700 to-brand-600",
     overlayGradient: "from-brand-900/85 via-brand-800/50 to-brand-900/75",
     accentColor: "border-brand-400/60",
-    // Medicine bottles & blister packs — no people
-    image: cfetch("photo-1587854692152-cbe660dbde88"),
+    image: "/images/tablets.webp",
   },
   {
     title: "Medical Equipment",
@@ -37,8 +30,7 @@ const divisions = [
     cardGradient: "from-emerald-600 to-emerald-500",
     overlayGradient: "from-emerald-900/85 via-emerald-800/50 to-slate-900/75",
     accentColor: "border-emerald-400/60",
-    // Stainless steel surgical instruments on a tray — no people
-    image: cfetch("photo-1551601651-2a8555f1a136"),
+    image: "/images/microscope.webp",
   },
   {
     title: "Biomedical Solutions",
@@ -49,8 +41,7 @@ const divisions = [
     cardGradient: "from-slate-700 to-slate-600",
     overlayGradient: "from-slate-900/85 via-slate-800/50 to-slate-900/75",
     accentColor: "border-slate-400/60",
-    // Borosilicate lab flasks & glassware — no people
-    image: cfetch("photo-1518152006812-edab29b069ac"),
+    image: "/images/wheel_chair.webp",
   },
   {
     title: "Healthcare Supply",
@@ -61,8 +52,7 @@ const divisions = [
     cardGradient: "from-brand-800 to-brand-700",
     overlayGradient: "from-brand-900/85 via-brand-900/50 to-slate-900/75",
     accentColor: "border-brand-300/60",
-    // Coloured pill capsules arranged — products, no people
-    image: cfetch("photo-1471864190281-a93a3070b6de"),
+    image: "/images/cargo_truck.webp",
   },
 ];
 

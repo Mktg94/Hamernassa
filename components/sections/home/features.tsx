@@ -132,7 +132,7 @@ export default function Features() {
         <div className="absolute inset-0 bg-slate-900/78" />
 
         {/* Subtle colour vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-slate-900/60" />
+        <div className="absolute inset-0 bg-linear-to-b from-slate-900/40 via-transparent to-slate-900/60" />
 
         {/* Grain texture */}
         <div
@@ -169,7 +169,7 @@ export default function Features() {
               className={`group relative bg-white/8 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/10 hover:border-white/25 transition-all duration-300 hover:bg-white/12 hover:-translate-y-1 hover:shadow-xl ${feature.glow}`}
             >
               {/* Gradient icon badge */}
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.accent} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${feature.accent} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
 
@@ -181,10 +181,10 @@ export default function Features() {
               </p>
 
               {/* Top-right corner accent */}
-              <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl ${feature.accent} opacity-0 group-hover:opacity-10 rounded-bl-3xl rounded-tr-2xl transition-opacity duration-300`} />
+              <div className={`absolute top-0 right-0 w-20 h-20 bg-linear-to-bl ${feature.accent} opacity-0 group-hover:opacity-10 rounded-bl-3xl rounded-tr-2xl transition-opacity duration-300`} />
 
               {/* Bottom active bar */}
-              <div className={`absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r ${feature.accent} opacity-0 group-hover:opacity-60 transition-opacity duration-300 rounded-full`} />
+              <div className={`absolute bottom-0 left-6 right-6 h-px bg-linear-to-r ${feature.accent} opacity-0 group-hover:opacity-60 transition-opacity duration-300 rounded-full`} />
             </motion.div>
           ))}
         </motion.div>

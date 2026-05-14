@@ -63,9 +63,9 @@ export default function Hero() {
         </AnimatePresence>
 
         {/* Dark gradient overlay — keeps text readable */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/92 via-brand-900/80 to-brand-900/50" />
+        <div className="absolute inset-0 bg-linear-to-r from-brand-950/92 via-brand-900/80 to-brand-900/50" />
         {/* Bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-950/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-brand-950/60 via-transparent to-transparent" />
       </div>
 
       {/* ── Content ───────────────────────────────────────────────────── */}
