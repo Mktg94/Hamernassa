@@ -64,7 +64,9 @@ export default function PartnersPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-linear-to-b from-brand-950 via-brand-900 to-brand-800">
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <Image src="/images/partners.webp" alt="Partners" fill priority className="object-cover object-center" sizes="100vw" />
+        <div className="absolute inset-0 bg-brand-950/80" />
         <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`, backgroundSize: '40px 40px' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">

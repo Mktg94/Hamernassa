@@ -35,25 +35,6 @@ export default function AboutPreview() {
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-emerald-200/50 rounded-full blur-xl" />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-200/50 rounded-full blur-xl" />
             </div>
-
-            {/* Floating Stats Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOptions}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 border border-slate-100"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                  <span className="text-2xl">🏆</span>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-slate-900">100%</p>
-                  <p className="text-sm text-slate-500">Compliance Rate</p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Right - Content */}

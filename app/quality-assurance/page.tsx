@@ -173,7 +173,7 @@ export default function QualityAssurancePage() {
 
           <div className="grid grid-cols-3 gap-8">
             {[
-              { value: "100%", label: "Compliance Rate" },
+
               { value: "24/7", label: "Monitoring" },
               { value: "100%", label: "Batch Traceability" }
             ].map((stat, index) => (
