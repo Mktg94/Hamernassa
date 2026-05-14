@@ -7,32 +7,17 @@ import SectionHeader from "@/components/shared/section-header";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 import { ShieldCheck, Truck, FileCheck, DollarSign, HeadphonesIcon, Handshake } from "lucide-react";
 
-// ─── Cloudinary-fetch slider images ─────────────────────────────────────────
-// Images are pulled from Unsplash & served through the Cloudinary CDN with
-// automatic quality + format optimisation.
-const CLOUD = "draoyxmtm";
-const cf = (photoId: string) =>
-  `https://res.cloudinary.com/${CLOUD}/image/fetch/q_auto,f_auto,w_1920,h_1080,c_fill,g_center/https://images.unsplash.com/${photoId}?w=1920&q=85`;
 
 const sliderImages = [
-  // Diagnostic — ultrasound transducer probe head (object only)
-  { id: "photo-1551190822-a9333d879b1f", label: "Diagnostic Equipment" },
-  // ICU — IV drip bag & infusion line hanging (no person)
-  { id: "photo-1583912267382-49a82d19bd94", label: "ICU Equipment" },
-  // Surgical — stainless steel instruments laid out on a tray
-  { id: "photo-1551601651-2a8555f1a136", label: "Surgical Devices" },
-  // Monitoring — ECG heart rate monitor screen closeup
-  { id: "photo-1559757148-5c350d0d3c56", label: "Monitoring Equipment" },
-  // Emergency — defibrillator / AED device (object only)
-  { id: "photo-1504813184591-01572f98c85f", label: "Emergency Equipment" },
-  // Respiratory — mechanical ventilator machine
-  { id: "photo-1585771724684-38269d6639fd", label: "Respiratory Equipment" },
-  // Laboratory — borosilicate flasks & test tubes (no people)
-  { id: "photo-1518152006812-edab29b069ac", label: "Laboratory Equipment" },
-  // Pharmaceuticals — coloured capsules / pill tablets closeup
-  { id: "photo-1471864190281-a93a3070b6de", label: "Pharmaceuticals – Pills" },
-  // Tablets & Syrups — medicine blister packs & amber bottles
-  { id: "photo-1587854692152-cbe660dbde88", label: "Tablets & Syrups" },
+  { src: "/images/chemistry_analyzer.webp",      label: "Chemistry Analyzer" },
+  { src: "/images/digital_autoclave.webp",        label: "Digital Autoclave" },
+  { src: "/images/portable_centrifuge.webp",      label: "Portable Centrifuge" },
+  { src: "/images/operating_room.webp",           label: "Operating Room" },
+  { src: "/images/suction2.webp",                 label: "Suction Equipment" },
+  { src: "/images/microscope.webp",               label: "Microscope" },
+  { src: "/images/modern_hospital.webp",          label: "Modern Hospital" },
+  { src: "/images/laboratory_refrigerator.webp",  label: "Laboratory Equipment" },
+  { src: "/images/pharma_tablets.webp",           label: "Pharmaceuticals" },
 ];
 
 // ─── Feature cards (unchanged content) ──────────────────────────────────────
@@ -116,7 +101,7 @@ export default function Features() {
                 transition={{ duration: 0.9, ease: "easeInOut" }}
               >
                 <Image
-                  src={cf(img.id)}
+                  src={img.src}
                   alt={img.label}
                   fill
                   priority={i === 0}

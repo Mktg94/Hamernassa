@@ -45,16 +45,17 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-28">
+          <div className="flex items-center justify-between h-20 md:h-24">
 
             {/* ── Logo ── */}
-            <Link href="/" className="flex items-center gap-3 shrink-0 group">
-              <div className="w-32 h-32 relative rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow overflow-hidden">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 relative rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow overflow-hidden">
                 <Image
                   src="/images/hlogo.svg"
                   alt="Hamernassa Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain p-1"
+                  sizes="(max-width: 640px) 56px, (max-width: 768px) 64px, 80px"
                 />
               </div>
               <div className="hidden sm:block leading-tight">
@@ -156,7 +157,7 @@ export default function Navbar() {
                     className="flex items-center gap-2.5"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="w-16 h-16 relative rounded-xl flex items-center justify-center overflow-hidden">
+                    <div className="w-14 h-14 relative rounded-xl flex items-center justify-center overflow-hidden">
                       <Image
                         src="/images/hlogo.svg"
                         alt="Hamernassa Logo"
