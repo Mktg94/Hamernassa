@@ -128,7 +128,7 @@ export default function Features() {
           )}
         </AnimatePresence>
 
-        {/* Dark overlay — keeps cards & text readable */}
+        {/* Dark overlay — keeps  cards & text readable */}
         <div className="absolute inset-0 bg-slate-900/78" />
 
         {/* Subtle colour vignette */}
@@ -199,9 +199,8 @@ export default function Features() {
                 key={i}
                 onClick={() => { setActiveIndex(i); startTimer(); }}
                 aria-label={`View ${sliderImages[i].label}`}
-                className={`h-1.5 rounded-full transition-all duration-400 ${
-                  activeIndex === i ? "w-8 bg-white" : "w-1.5 bg-white/30 hover:bg-white/55"
-                }`}
+                className={`h-1.5 rounded-full transition-all duration-400 ${activeIndex === i ? "w-8 bg-white" : "w-1.5 bg-white/30 hover:bg-white/55"
+                  }`}
               />
             ))}
           </div>
